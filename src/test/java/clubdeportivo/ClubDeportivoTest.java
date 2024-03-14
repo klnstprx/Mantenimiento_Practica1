@@ -41,7 +41,7 @@ public class ClubDeportivoTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"Fútbol,Deporte,abc,5,10.0", "Baloncesto,Deporte,10,-xcd,10.0", "Baloncesto,Deporte,10,5,10.0x"})
+    @ValueSource(strings = {"A1,Deporte,abc,5,10.0", "B1,Deporte,10,-xcd,10.0", "B2,Deporte,10,5,10.0x"})
     @DisplayName("Añadir actividad con datos incorrectos throws exception.")
     public void anyadirActividadWithIncorrectDataThrowsClubException(String datos) {
         String[] datosSplit = datos.split(",");
@@ -51,11 +51,11 @@ public class ClubDeportivoTest {
     @Test
     @DisplayName("Anadir mas de una actividad.")
     public void anyadirActivdadWithMoreThanOneActividad() throws ClubException {
-        String[] datos1 = {"Fútbol", "Deporte", "5", "3", "10.0"};
+        String[] datos1 = {"A1", "Deporte", "5", "3", "10.0"};
         club1.anyadirActividad(datos1);
-        String[] datos2 = {"Baloncesto", "Deporte", "10", "5", "10.0"};
+        String[] datos2 = {"B1", "Deporte", "10", "5", "10.0"};
         club1.anyadirActividad(datos2);
-        String expectedValue = "Club 1 --> [ (Fútbol - Deporte - 10.0 euros - P:5 - M:3), (Baloncesto - Deporte - 10.0 euros - P:10 - M:5) ]";
+        String expectedValue = "Club 1 --> [ (A1 - Deporte - 10.0 euros - P:5 - M:3), (B1 - Deporte - 10.0 euros - P:10 - M:5) ]";
         String obtainedValue = club1.toString();
         assertEquals(expectedValue, obtainedValue);
     }
@@ -63,9 +63,9 @@ public class ClubDeportivoTest {
     @Test
     @DisplayName("Añadir actividad con datos correctos.")
     public void anyadirActividadWithCorrectData() throws ClubException {
-        String[] datos1 = {"Fútbol", "Deporte", "5", "3", "10.0"};
+        String[] datos1 = {"A1", "Deporte", "5", "3", "10.0"};
         club1.anyadirActividad(datos1);
-        String expectedValue = "Club 1 --> [ (Fútbol - Deporte - 10.0 euros - P:5 - M:3) ]";
+        String expectedValue = "Club 1 --> [ (A1 - Deporte - 10.0 euros - P:5 - M:3) ]";
         String obtainedValue = club1.toString();
         assertEquals(expectedValue, obtainedValue);
     }
@@ -73,11 +73,11 @@ public class ClubDeportivoTest {
     @Test
     @DisplayName("Añadir actividad con grupo ya existente.")
     public void anyadirActividadWithExistingGroup() throws ClubException {
-        String[] datos = {"Fútbol", "Deporte", "5", "3", "10.0"};
+        String[] datos = {"A1", "Deporte", "5", "3", "10.0"};
         club1.anyadirActividad(datos);
-        String[] datos2 = {"Fútbol", "Deporte", "6", "3", "10.0"};
+        String[] datos2 = {"A1", "Deporte", "6", "3", "10.0"};
         club1.anyadirActividad(datos2);
-        String expectedValue = "Club 1 --> [ (Fútbol - Deporte - 10.0 euros - P:6 - M:3) ]";
+        String expectedValue = "Club 1 --> [ (A1 - Deporte - 10.0 euros - P:6 - M:3) ]";
         String obtainedValue = club1.toString();
         assertEquals(expectedValue, obtainedValue);
     }
@@ -86,7 +86,7 @@ public class ClubDeportivoTest {
     @ValueSource(ints = {2,1})
     @DisplayName("Matricular en actividad con plazas libres.")
     public void matricularWithFreePlaces(int numPersonas) throws ClubException {
-        String[] datos = {"Fútbol", "Deporte", "5", "3", "10.0"};
+        String[] datos = {"A1", "Deporte", "5", "3", "10.0"};
         String[] datos1 = {"A123", "Karate", "10", "5", "10.0"};
         club1.anyadirActividad(datos);
         club1.anyadirActividad(datos1);
@@ -94,7 +94,7 @@ public class ClubDeportivoTest {
         club1.matricular("Karate", numPersonas);
         int expectedMatriculadosDeporte = numPersonas + 3;
         int expectedMatriculadosKarate = numPersonas + 5;
-        String expectedValue = "Club 1 --> [ (Fútbol - Deporte - 10.0 euros - P:5 - M:"+ expectedMatriculadosDeporte +"), (A123 - Karate - 10.0 euros - P:10 - M:"+ expectedMatriculadosKarate +") ]";
+        String expectedValue = "Club 1 --> [ (A1 - Deporte - 10.0 euros - P:5 - M:"+ expectedMatriculadosDeporte +"), (A123 - Karate - 10.0 euros - P:10 - M:"+ expectedMatriculadosKarate +") ]";
         String obtainedValue = club1.toString();
         assertEquals(expectedValue, obtainedValue);
     }
@@ -102,7 +102,7 @@ public class ClubDeportivoTest {
     @Test
     @DisplayName("Matricular en actividad sin plazas libres throws exception.")
     public void matricularWithoutFreePlacesThrowsClubException() throws ClubException {
-        String[] datos = {"Fútbol", "Deporte", "5", "3", "10.0"};
+        String[] datos = {"A1", "Deporte", "5", "3", "10.0"};
         club1.anyadirActividad(datos);
         assertThrows(ClubException.class, () -> club1.matricular("Deporte", 3));
     }
@@ -110,7 +110,7 @@ public class ClubDeportivoTest {
     @Test
     @DisplayName("Se comprueba que se calcule bien la cantidad aumentada de ingresos")
     public void ingresos() throws ClubException {
-        String[] datos = {"Fútbol", "Deporte", "5", "3", "10.0"};
+        String[] datos = {"A1", "Deporte", "5", "3", "10.0"};
         club1.anyadirActividad(datos);
         double expectedValue = 30.0;
         double obtainedValue = club1.ingresos();
