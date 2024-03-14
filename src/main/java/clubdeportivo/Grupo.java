@@ -46,14 +46,18 @@ public class Grupo {
 	}
 	
 	public void actualizarPlazas(int n) throws ClubException { 
-		if (n<=0 || n < nmatriculados) {
+		if (n <= 0) {
 			throw new ClubException("ERROR: número de plazas negativo.");
+		} else if (n < nmatriculados) {
+			throw new ClubException("ERROR: el número de plazas es menor que el de matriculados.");
 		}
 		nplazas=n;		
 	}
 	
 	public void matricular(int n) throws ClubException {
-		if (plazasLibres()< n || n<=0) {
+		if (n <= 0) {
+			throw new ClubException("ERROR: número de matriculas negativo.");
+		} else if (plazasLibres()< n) {
 			throw new ClubException("ERROR: no hay plazas libres suficientes, plazas libre: "+ plazasLibres()+ " y matriculas: "+n);
 		}
 		nmatriculados+=n;
