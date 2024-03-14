@@ -44,7 +44,8 @@ public class Grupo {
 	public int plazasLibres() {
 		return nplazas-nmatriculados;
 	}
-	
+
+	// Hemos corregido el error en la estructura del if() para que se muestre el mensaje de error correcto.
 	public void actualizarPlazas(int n) throws ClubException { 
 		if (n <= 0) {
 			throw new ClubException("ERROR: número de plazas negativo.");
@@ -53,7 +54,8 @@ public class Grupo {
 		}
 		nplazas=n;		
 	}
-	
+
+	// Hemos corregido el mismo error que antes
 	public void matricular(int n) throws ClubException {
 		if (n <= 0) {
 			throw new ClubException("ERROR: número de matriculas negativo.");
