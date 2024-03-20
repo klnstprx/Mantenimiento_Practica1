@@ -35,6 +35,10 @@ public class ClubDeportivoAltoRendimiento extends ClubDeportivo{
 			double tarifa = Double.parseDouble(datos[4]);
 			if (plazas > maximoPersonasGrupo) {
 				plazas=maximoPersonasGrupo;
+				//Error 1: no se controla si el número de matriculados sobrepasa al nuevo número de plazas
+				if (matriculados > plazas) {
+					matriculados = plazas;
+				}
 			}
 			Grupo g = new Grupo(datos[0], datos[1], plazas, matriculados, tarifa);
 			super.anyadirActividad(g);
@@ -48,5 +52,4 @@ public class ClubDeportivoAltoRendimiento extends ClubDeportivo{
 		double cantidad = super.ingresos();
 		return cantidad+cantidad*(incremento/100);
 	}
-	
 }

@@ -53,6 +53,12 @@
 			<version>5.7.0</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>RELEASE</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 	
 	<!-- Los plugins son extensiones de maven (objetivos) que se ejecutan durante la fase de build o reporting-->
