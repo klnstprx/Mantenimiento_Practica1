@@ -44,16 +44,22 @@ public class Grupo {
 	public int plazasLibres() {
 		return nplazas-nmatriculados;
 	}
-	
+
+	// Hemos corregido el error en la estructura del if() para que se muestre el mensaje de error correcto.
 	public void actualizarPlazas(int n) throws ClubException { 
-		if (n<=0 || n < nmatriculados) {
+		if (n <= 0) {
 			throw new ClubException("ERROR: número de plazas negativo.");
+		} else if (n < nmatriculados) {
+			throw new ClubException("ERROR: el número de plazas es menor que el de matriculados.");
 		}
 		nplazas=n;		
 	}
-	
+
+	// Hemos corregido el mismo error que antes
 	public void matricular(int n) throws ClubException {
-		if (plazasLibres()< n || n<=0) {
+		if (n <= 0) {
+			throw new ClubException("ERROR: número de matriculas negativo.");
+		} else if (plazasLibres()< n) {
 			throw new ClubException("ERROR: no hay plazas libres suficientes, plazas libre: "+ plazasLibres()+ " y matriculas: "+n);
 		}
 		nmatriculados+=n;
